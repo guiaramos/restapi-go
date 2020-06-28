@@ -1,6 +1,7 @@
 package  main
 
 import (
+	"encoding/json"
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
@@ -26,7 +27,8 @@ var books []Book
 // Controllers
 
 func getBooks(res http.ResponseWriter, req *http.Request){
-
+	res.Header().Set("Content-Type", "application/json")
+ 	json.NewEncoder(res).Encode(books)
 }
 
 func getBook(res http.ResponseWriter, req *http.Request){
